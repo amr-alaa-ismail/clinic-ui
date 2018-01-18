@@ -1,0 +1,44 @@
+<div *ngIf="searchView">
+<div class="input-group col-sm-12" style="height: 55px">
+	<div class="col-lg-2 col-sm-0"></div>
+	<div class="input-group col-lg-6">
+	  <span class="input-group-addon" ><i class="fa fa-spinner {{enableSpinning?'fa-spin':''}}"></i></span>
+	  <input type="text" class="form-control" [(ngModel)]="filterParam">
+	  <span class="input-group-addon click" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></span>
+	  <span class="input-group-addon click" (click)="addPatient()"><i class="fa fa-plus" aria-hidden="true"></i></span>
+	</div>	
+</div>
+
+<table *ngIf="patients && patients.length>0" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+	    <th scope="col">File Num</th>
+	  <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of patients">
+      <td>{{patient.firstName}}</td>
+      <td>{{patient.lastName}}</td>
+      <td>{{patient.age}}</td>
+      <td>{{patient.gender}}</td>
+      <td>{{patient.phone}}</td>
+      <td>{{patient.address}}</td>
+      <td>{{patient.fileNumber}}</td>
+      <td><button class="btn btn-default" (click)="updatePatient(patient)">
+      	<span class="edit-icon click" >
+      		<i class="fa fa-pencil" aria-hidden="true"></i>
+      	</span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<edit-patient [patient]="patient" (updatePatients)="patients.push($event)" (cancelEdit)="searchView=true;" *ngIf="!searchView"></edit-patient>

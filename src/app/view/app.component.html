@@ -1,0 +1,17 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="{{isPatientView==false?'active':''}}"><a href="#" (click)="isPatientView=false">Reservation</a></li>
+        <li class="{{isPatientView==true?'active':''}}"><a href="#" (click)="isPatientView=true">Patient</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <patient *ngIf="isPatientView"></patient>
+  <reservation *ngIf="!isPatientView"></reservation>
+</div>
