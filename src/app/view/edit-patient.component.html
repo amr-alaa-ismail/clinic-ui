@@ -1,0 +1,57 @@
+<div class="col-md-2"></div>
+<form #patientForm="ngForm" (submit)="phone.valid && savePatient()" class="container col-md-8">
+	<div class="row">
+	<div class="form-group col-sm-6">
+	  <label for="first_name">First name</label>
+	  <input type="text" class="form-control" id="first_name" name="first_name" [(ngModel)]="localPatient.firstName">
+	</div>
+	<div class="form-group col-sm-6">
+	  <label for="last_name">Last name</label>
+	  <input type="text" class="form-control" id="last_name" name="last_name" [(ngModel)]="localPatient.lastName">
+	</div>
+  	</div>
+    <div class="row">
+    	<div class="form-group col-sm-6">
+		  <label for="age">Age</label>
+		  <input type="number" class="form-control" id="age" name="age" [(ngModel)]="localPatient.age">
+		</div>
+		<div class="form-group col-sm-6">
+		  <label class="col-sm-1">Gender</label> <br />
+	      <input class="form-check-input" type="radio" name="sex" id="sex_male" value="MALE" [(ngModel)]="localPatient.gender"> Male
+	      <input class="form-check-input" type="radio" name="sex" id="sex_femlae" value="FEMALE" [(ngModel)]="localPatient.gender"> Female
+		</div>
+    </div>
+
+    <div class="row">
+    	<div class="form-group col-sm-6">
+			<label for="file_num">Phone</label>
+			<input type="text" #phone="ngModel" class="form-control {{!phone.valid?'error':''}}" id="phone" name="phone" ngModel [(ngModel)]="localPatient.phone" required>
+		</div>
+		<div class="form-group col-sm-6">
+			<label for="file_num">File number</label>
+			<input type="text" class="form-control" id="file_num" name="file_num" [(ngModel)]="localPatient.fileNumber">
+		</div>
+	</div>
+	<div class="row">
+    	<div class="form-group col-sm-12">
+			<label for="address">Address</label>
+			<input type="text" class="form-control" id="address" name="address" ngModel [(ngModel)]="localPatient.address">
+		</div>
+	</div>
+	<div class="row">
+  	<div class="form-group col-lg-6">
+	    <label for="comment">Comments</label>
+	    <p-listbox [options]="comments" [(ngModel)]="localPatient.comments" checkbox="true" multiple="true" name="comments"></p-listbox>
+	</div>
+    <div class="form-group col-lg-6">
+      <label for="diagnosis">Diagnosis</label>
+      <p-listbox [options]="diagnosis" [(ngModel)]="localPatient.diagnosis" checkbox="true" multiple="true" name="diagnosis"></p-listbox>
+  	</div>
+  	</div>
+  	<br />
+  	<div class="row" style="text-align: center">
+  		<button type="submit" class="btn btn-primary" *ngIf="patientFound">Update</button>
+  		<button type="submit" class="btn btn-primary" *ngIf="!patientFound">Save</button>
+  		<button type="button" class="btn btn-primary" (click)="cancel()">Cancel</button>
+  	</div>
+</form>
