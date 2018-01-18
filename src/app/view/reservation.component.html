@@ -1,0 +1,32 @@
+<table *ngIf="isListView && patients && patients.length != 0" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+	    <th scope="col">File Num</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of patients">
+      <td>{{patient.firstName}}</td>
+      <td>{{patient.lastName}}</td>
+      <td>{{patient.age}}</td>
+      <td>{{patient.gender}}</td>
+      <td>{{patient.phone}}</td>
+      <td>{{patient.address}}</td>
+      <td>{{patient.fileNumber}}</td>
+      <td><button class="btn btn-default" (click)="updatePatient(patient)">
+        <span class="edit-icon click" >
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<edit-patient [patient]="patient" (cancelEdit)="isListView=true;" *ngIf="!isListView"></edit-patient>
