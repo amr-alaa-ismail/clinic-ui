@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+.click {
+	cursor: pointer;
+}
+.error {
+	border-color: red !important;
+}
